@@ -38,9 +38,33 @@ jobs:
               run: npm ci
 
             - name: Generate build metadata
+              shell: bash
               run: |
-                echo "VITE_GIT_COMMIT=$(git rev-parse --short HEAD)" >> .env.production
-                echo "VITE_GIT_COMMIT_DATE=$(git log -1 --date=format:'%d/%m/%Y %H:%M:%S' --format=%cd)" >> .env.production
+                {
+                  echo "VITE_GIT_COMMIT=$(git rev-parse --short HEAD)"
+                  echo "VITE_GIT_COMMIT_DATE=$(git log -1 --date=format:'%d/%m/%Y %H:%M:%S' --format=%cd)"
+                  echo "VITE_GIT_AUTHOR=$(git log -1 --format='%an')"
+                  echo "VITE_GIT_MESSAGE<<EOF"
+                  git log -1 --pretty=%B
+                  echo "EOF"
+
+                  echo "VITE_GITHUB_SHA=${GITHUB_SHA}"
+                  echo "VITE_GITHUB_WORKFLOW=${GITHUB_WORKFLOW}"
+                  echo "VITE_GITHUB_RUN_NUMBER=${GITHUB_RUN_NUMBER}"
+                  echo "VITE_GITHUB_RUN_ID=${GITHUB_RUN_ID}"
+                  echo "VITE_GITHUB_RUN_ATTEMPT=${GITHUB_RUN_ATTEMPT}"
+                  echo "VITE_GITHUB_ACTOR=${GITHUB_ACTOR}"
+                  echo "VITE_GITHUB_REPOSITORY=${GITHUB_REPOSITORY}"
+                  echo "VITE_GITHUB_REF=${GITHUB_REF}"
+                  echo "VITE_GITHUB_BRANCH=${GITHUB_REF_NAME}"
+                  echo "VITE_GITHUB_EVENT=${GITHUB_EVENT_NAME}"
+                  echo "VITE_BUILD_DATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+                  echo "VITE_BUILD_TIMESTAMP=$(date -u +%s)"
+
+                  echo "VITE_GITHUB_RUN_URL=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+                  echo "VITE_GITHUB_COMMIT_URL=https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+                  echo "VITE_GITHUB_REPO_URL=https://github.com/${GITHUB_REPOSITORY}"
+                } >> .env.production
 
             - name: Build
               run: npm run build
