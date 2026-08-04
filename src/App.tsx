@@ -39,17 +39,6 @@ export default function App() {
           uma alteração é enviada para o repositório, o fluxo de automação pode
           executar validações, compilar o projeto e realizar o deploy sem
           intervenção manual.
-
-          {" "}
-          Para maiores informações:{" "}
-          <a
-            href="https://github.com/eded001/GH-Actions/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-200 underline hover:text-white"
-          >
-            .github/workflows/
-          </a>
         </p>
 
         <div className="rounded-xl border border-slate-800 bg-slate-950 p-6">
