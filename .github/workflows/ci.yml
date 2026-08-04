@@ -1,0 +1,37 @@
+name: CI
+
+run-name: CI - ${{ github.ref_name }} by ${{ github.actor }}
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+            - feature/**
+    pull_request:
+        branches:
+            - main
+            - develop
+
+jobs:
+    lint-and-build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run ESLint
+              run: npm run lint
+
+            - name: Build application
+              run: npm run build
