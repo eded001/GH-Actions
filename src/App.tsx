@@ -1,15 +1,18 @@
 export default function App() {
   const info = {
-    commit: import.meta.env.VITE_GIT_COMMIT,
-    commitDate: import.meta.env.VITE_GIT_COMMIT_DATE,
-    branch: import.meta.env.VITE_GIT_BRANCH,
-    workflow: import.meta.env.VITE_GITHUB_WORKFLOW,
-    runNumber: import.meta.env.VITE_GITHUB_RUN_NUMBER,
-    runId: import.meta.env.VITE_GITHUB_RUN_ID,
-    actor: import.meta.env.VITE_GITHUB_ACTOR,
-    repository: import.meta.env.VITE_GITHUB_REPOSITORY,
-    sha: import.meta.env.VITE_GITHUB_SHA,
-    buildDate: import.meta.env.VITE_BUILD_DATE,
+    commit: import.meta.env.VITE_GIT_COMMIT ?? "Desenvolvimento",
+    commitDate: import.meta.env.VITE_GIT_COMMIT_DATE ?? "Não informado",
+    branch: import.meta.env.VITE_GIT_BRANCH ?? "local",
+    workflow: import.meta.env.VITE_GITHUB_WORKFLOW ?? "Execução local",
+    runNumber: import.meta.env.VITE_GITHUB_RUN_NUMBER ?? "-",
+    runId: import.meta.env.VITE_GITHUB_RUN_ID ?? "-",
+    actor: import.meta.env.VITE_GITHUB_ACTOR ?? "Desconhecido",
+    repository: import.meta.env.VITE_GITHUB_REPOSITORY ?? "Local",
+    sha: import.meta.env.VITE_GITHUB_SHA ?? "-",
+    buildDate: import.meta.env.VITE_BUILD_DATE ?? new Date().toLocaleString("pt-BR"),
+    event: import.meta.env.VITE_GITHUB_EVENT ?? "development",
+    commitAuthor: import.meta.env.VITE_GIT_AUTHOR ?? "Desconhecido",
+    commitMessage: import.meta.env.VITE_GIT_MESSAGE ?? "Sem mensagem",
   };
 
   return (
