@@ -1,7 +1,4 @@
 export default function App() {
-  const commit = import.meta.env.VITE_GIT_COMMIT || "Desconhecido";
-  const commitDate = import.meta.env.VITE_GIT_COMMIT_DATE || "Desconhecida";
-
   const info = {
     commit: import.meta.env.VITE_GIT_COMMIT,
     commitDate: import.meta.env.VITE_GIT_COMMIT_DATE,
