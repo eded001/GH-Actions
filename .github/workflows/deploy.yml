@@ -37,6 +37,11 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
+            - name: Generate build metadata
+              run: |
+                echo "VITE_GIT_COMMIT=$(git rev-parse --short HEAD)" >> .env.production
+                echo "VITE_GIT_COMMIT_DATE=$(git log -1 --date=format:'%d/%m/%Y %H:%M:%S' --format=%cd)" >> .env.production
+
             - name: Build
               run: npm run build
 
