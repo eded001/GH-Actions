@@ -30,7 +30,7 @@ export default function App() {
           {" "}
           Para maiores informações:{" "}
           <a
-            href="https://github.com/eded001/GH-Actions/tree/main/.github/workflows"
+            href="https://github.com/eded001/GH-Actions/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-200 underline hover:text-white"
